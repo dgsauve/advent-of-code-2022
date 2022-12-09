@@ -15,15 +15,15 @@ input.each_with_index do | row, rix |
                 puts "col"
             else
                 puts "looking at [#{rix}, #{cix}]"
+                can_see = false
                 visible = true
                 # up
                 (0..(rix - 1)).each do |ix|
                     visible = false if input[ix][cix] >= tree
                 end
                 if visible
-                    puts "visible"
-                    visible_trees += 1
-                    break
+                    visible_trees += 1 unless can_see
+                    can_see = true
                 end
                 visible = true
                 # down
@@ -31,8 +31,8 @@ input.each_with_index do | row, rix |
                     visible = false if input[ix][cix] >= tree
                 end
                 if visible
-                    visible_trees += 1
-                    break
+                    visible_trees += 1 unless can_see
+                    can_see = true
                 end
                 visible = true
                 # left
@@ -40,8 +40,8 @@ input.each_with_index do | row, rix |
                     visible = false if input[rix][ix] >= tree
                 end
                 if visible
-                    visible_trees += 1
-                    break
+                    visible_trees += 1 unless can_see
+                    can_see = true
                 end
                 visible = true
                 # right
@@ -49,8 +49,8 @@ input.each_with_index do | row, rix |
                     visible = false if input[rix][ix] >= tree
                 end
                 if visible
-                    visible_trees += 1
-                    break
+                    visible_trees += 1 unless can_see
+                    can_see = true
                 end
             end
         end
