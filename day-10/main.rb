@@ -39,13 +39,13 @@ output = ''
 
 def parse_cycle(cycle, x)
     return_string = ''
+    if cycle % 40 == 0 && cycle != 0
+        return_string += "\n"
+    end
     if cycle % 40 == x - 1 || cycle % 40 == x or cycle % 40 == x + 1
         return_string += '#'
     else
         return_string += '.'
-    end
-    if cycle % 40 == 0 && cycle != 0
-        return_string += "\n"
     end
 
     return_string
@@ -62,7 +62,6 @@ input.each do | inst |
         
         output += parse_cycle(cycle, x)
         cycle += 1
-        # check for cycle value
 
         x += inst.split(' ')[1].to_i
     end
